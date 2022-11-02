@@ -2,8 +2,12 @@ package Code;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.*;
 public class GUI {
-    public GUI() {
+    public GUI() throws URISyntaxException {
+        final URI uri = new URI("https://github.com/SAMA-UW");
 
         JFrame frame = new JFrame();
         frame.setTitle("SAMA");
@@ -19,12 +23,30 @@ public class GUI {
 
         JButton aboutButton = new JButton("ABOUT");
         aboutButton.setBounds(250, 400, 100, 30);
+
+
+        aboutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                        desktop.browse(uri);
+                    } catch (Exception ex) {
+                    }
+                } else {
+                }
+            }
+        });
         frame.add(aboutButton);
 
 
 
 
 
+
+
+
     }
+
 }
 
